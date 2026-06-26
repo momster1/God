@@ -1,23 +1,95 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh">
 <head>
 <meta charset="UTF-8">
-<title>软件购买</title>
+<title>生日快乐！</title>
+
+<style>
+
+body{
+    margin:0;
+    overflow:hidden;
+    background:linear-gradient(120deg,#ff9a9e,#fad0c4);
+    font-family:"微软雅黑";
+}
+
+h1{
+    position:absolute;
+    width:100%;
+    top:40%;
+    text-align:center;
+    color:white;
+    font-size:55px;
+    animation:zoom 2s infinite alternate;
+}
+
+@keyframes zoom{
+    from{transform:scale(1);}
+    to{transform:scale(1.2);}
+}
+
+.msg{
+    position:absolute;
+    color:white;
+    font-size:28px;
+    animation:fall 8s linear infinite;
+}
+
+@keyframes fall{
+    from{
+        transform:translateY(-100px);
+    }
+    to{
+        transform:translateY(110vh);
+    }
+}
+
+</style>
+
 </head>
 
 <body>
 
-<h1>XX软件</h1>
+<h1>🎂 生日快乐！🎉</h1>
 
-<p>售价：3元</p>
+<script>
 
-<p>支持 Windows</p>
+const words=[
+"生日快乐🎂",
+"兄弟！越来越帅！",
+"天天开心😁",
+"心想事成✨",
+"工作顺利💪",
+"发财发财💰",
+"健康快乐❤️",
+"愿梦想成真🌈",
+"Happy Birthday🎉",
+"永远是好兄弟🤝"
+];
 
-<p>购买后自动获得下载链接</p>
+function createWord(){
 
-<a href="这里放购买链接">
-<button>立即购买</button>
-</a>
+let div=document.createElement("div");
+
+div.className="msg";
+
+div.innerHTML=words[Math.floor(Math.random()*words.length)];
+
+div.style.left=Math.random()*100+"vw";
+
+div.style.animationDuration=5+Math.random()*5+"s";
+
+document.body.appendChild(div);
+
+setTimeout(()=>{
+div.remove();
+},9000);
+
+}
+
+setInterval(createWord,300);
+
+</script>
 
 </body>
 </html>
