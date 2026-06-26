@@ -1,38 +1,87 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<title>生日快乐！</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>🎂 生日快乐！</title>
 
 <style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
 body{
-    margin:0;
     overflow:hidden;
-    background:linear-gradient(120deg,#ff9a9e,#fad0c4);
-    font-family:"微软雅黑";
+    font-family:"Microsoft YaHei",sans-serif;
+    background:url("photo.jpg") center center/cover no-repeat fixed;
 }
 
-h1{
+/* 黑色遮罩，让文字更清楚 */
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.45);
+}
+
+/* 中间卡片 */
+.card{
     position:absolute;
-    width:100%;
-    top:40%;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    width:360px;
+    max-width:90%;
     text-align:center;
+    z-index:2;
+
+    background:rgba(255,255,255,.18);
+    backdrop-filter:blur(10px);
+
+    border-radius:20px;
+    padding:25px;
+    box-shadow:0 0 30px rgba(0,0,0,.5);
+}
+
+/* 照片 */
+.photo{
+    width:220px;
+    height:220px;
+    object-fit:cover;
+    border-radius:50%;
+    border:6px solid white;
+    box-shadow:0 0 20px rgba(255,255,255,.8);
+}
+
+/* 标题 */
+h1{
+    margin-top:20px;
+    color:#FFD700;
+    font-size:42px;
+    text-shadow:3px 3px 10px black;
+}
+
+/* 祝福语 */
+p{
+    margin-top:20px;
     color:white;
-    font-size:55px;
-    animation:zoom 2s infinite alternate;
+    font-size:20px;
+    line-height:35px;
+    text-shadow:2px 2px 8px black;
 }
 
-@keyframes zoom{
-    from{transform:scale(1);}
-    to{transform:scale(1.2);}
-}
-
-.msg{
+/* 飘落文字 */
+.word{
     position:absolute;
-    color:white;
+    top:-60px;
+    color:#FFD700;
+    font-weight:bold;
     font-size:28px;
-    animation:fall 8s linear infinite;
+    text-shadow:2px 2px 6px #000;
+    animation:fall linear forwards;
+    z-index:3;
 }
 
 @keyframes fall{
@@ -44,40 +93,71 @@ h1{
     }
 }
 
+/* 卡片轻轻跳动 */
+.card{
+    animation:float 3s ease-in-out infinite;
+}
+
+@keyframes float{
+    0%{transform:translate(-50%,-50%);}
+    50%{transform:translate(-50%,-53%);}
+    100%{transform:translate(-50%,-50%);}
+}
+
 </style>
 
 </head>
 
 <body>
 
-<h1>🎂 生日快乐！🎉</h1>
+<div class="card">
+
+<img src="photo.jpg" class="photo">
+
+<h1>🎂 生日快乐 🎉</h1>
+
+<p>
+兄弟，生日快乐！🎈<br><br>
+
+愿你以后：<br>
+
+💰 财源滚滚<br>
+💪 工作顺利<br>
+😁 天天开心<br>
+❤️ 身体健康<br>
+🌈 万事如意<br><br>
+
+—— 来自你永远的好兄弟 🤝
+</p>
+
+</div>
 
 <script>
 
 const words=[
-"生日快乐🎂",
-"兄弟！越来越帅！",
-"天天开心😁",
-"心想事成✨",
-"工作顺利💪",
-"发财发财💰",
-"健康快乐❤️",
-"愿梦想成真🌈",
-"Happy Birthday🎉",
-"永远是好兄弟🤝"
+"🎂生日快乐",
+"🎉Happy Birthday",
+"💰发财",
+"😁天天开心",
+"💪工作顺利",
+"❤️健康平安",
+"🌈梦想成真",
+"🎁幸福每一天",
+"🍻兄弟一辈子",
+"🎊越来越帅"
 ];
 
 function createWord(){
 
-let div=document.createElement("div");
+const div=document.createElement("div");
 
-div.className="msg";
+div.className="word";
 
 div.innerHTML=words[Math.floor(Math.random()*words.length)];
 
 div.style.left=Math.random()*100+"vw";
 
-div.style.animationDuration=5+Math.random()*5+"s";
+div.style.animationDuration=4+Math.random()*5+"s";
 
 document.body.appendChild(div);
 
